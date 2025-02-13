@@ -35,6 +35,7 @@ const GET_RANK_CHANNEL_ID = '1336961344682856508';
 const INTRODUCTIONS_CHANNEL_ID = '1336949957080514620';
 const TOURNAMENT_INFO_CHANNEL_ID = '1336950103830695997';
 const LOOKING_FOR_TEAM_CHANNEL_ID = '1336950651996864603';
+const ADMIN_ROLE_ID = '1337908806142660678'; // Replace with the Admin role ID
 const ROLE_ID = '1337646502012780616'; // Role assigned on ✅ reaction
 const CHECKMARK_EMOJI = '✅'; // Reaction emoji
 const TICKET_CATEGORY_ID = '1337654371076411473'; // Category for tickets
@@ -73,20 +74,25 @@ client.on('messageCreate', async (message) => {
         await message.channel.send({ embeds: [embed], components: [row] });
     }
 
-    // ✅ Send Welcome Steps Embed
+    // ✅ Send Welcome Steps Embed (Updated)
     if (message.content === '!sendwelcome' && message.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
         const embed = new EmbedBuilder()
             .setColor(0x2ecc71) // Green
-            .setTitle("✅ **Next Steps for New Members**")
+            .setTitle("**Welcome to LOCL – Legends of COD League!**")
             .setDescription(
-                "You've just joined one of the most intense Call of Duty competitive communities!\n" +
-                "Get ready to team up, compete, and prove your skills.\n\n" +
+                "Compete. Dominate. Rise to the Top!\n" +
+                "You've just joined one of the most intense Call of Duty competitive communities!\n\n" +
                 
-                "✅ **Step 1:** Read the <#" + RULES_CHANNEL_ID + "> to understand our guidelines.\n" +
-                "✅ **Step 2:** Select Get Ranked in <#" + GET_RANK_CHANNEL_ID + "> and wait for a ranker to respond.\n" +
-                "✅ **Step 3:** Introduce yourself in <#" + INTRODUCTIONS_CHANNEL_ID + ">.\n" +
-                "✅ **Step 4:** Check out upcoming games in <#" + TOURNAMENT_INFO_CHANNEL_ID + ">.\n" +
-                "✅ **Step 5:** Join the fight! Connect with players in <#" + LOOKING_FOR_TEAM_CHANNEL_ID + ">."
+                "### **Next Steps for New Members**\n" +
+                "✅ **Step 1:** Read the **📜 [Rules](<#" + RULES_CHANNEL_ID + ">)** to understand our guidelines.\n" +
+                "✅ **Step 2:** Select Get Ranked in **🎖 [Get-Rank](<#" + GET_RANK_CHANNEL_ID + ">)** and wait for a ranker to respond.\n" +
+                "✅ **Step 3:** Introduce yourself in **👋 [Introductions](<#" + INTRODUCTIONS_CHANNEL_ID + ">)**.\n" +
+                "✅ **Step 4:** Check out upcoming games in **📆 [Tournament Info](<#" + TOURNAMENT_INFO_CHANNEL_ID + ">)**.\n" +
+                "✅ **Step 5:** Join the fight! Connect with players in **🎯 [Looking for a Team](<#" + LOOKING_FOR_TEAM_CHANNEL_ID + ">)**.\n\n" +
+
+                "### **📞 Contact Staff**\n" +
+                "*If you need help, message a* <@&" + ADMIN_ROLE_ID + ">.\n\n" + // Admin Role Mention
+                "**Welcome to LOCL – Legends of COD League!** | *Good Luck & Have Fun!*"
             )
             .setFooter({ text: "Welcome to the community!", iconURL: message.guild.iconURL() });
 
@@ -114,61 +120,9 @@ client.on('messageReactionRemove', async (reaction, user) => {
     if (member) await member.roles.remove(ROLE_ID).catch(console.error);
 });
 
-// 🎟️ Handle Ticket Creation
-client.on('interactionCreate', async (interaction) => {
-    if (!interaction.isButton()) return;
-
-    if (interaction.customId === 'create_ticket') {
-        const { guild, user } = interaction;
-        const safeName = user.username.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
-
-        // Check for existing ticket
-        const existingChannel = guild.channels.cache.find((channel) => channel.name === safeName);
-        if (existingChannel) {
-            return interaction.reply({ content: '❌ You already have an open ticket!', ephemeral: true });
-        }
-
-        // Create ticket channel
-        const ticketChannel = await guild.channels.create({
-            name: `ticket-${safeName}`,
-            type: 0, // Text channel
-            parent: TICKET_CATEGORY_ID,
-            permissionOverwrites: [
-                { id: guild.roles.everyone, deny: [PermissionsBitField.Flags.ViewChannel] },
-                { id: user.id, allow: [PermissionsBitField.Flags.ViewChannel, PermissionsBitField.Flags.SendMessages] },
-                { id: SUPPORT_ROLE_ID, allow: [PermissionsBitField.Flags.ViewChannel, PermissionsBitField.Flags.SendMessages] }
-            ]
-        });
-
-        const embed = new EmbedBuilder()
-            .setColor(0xed4245)
-            .setTitle(`🗒️ ${user.username}'s Ticket`)
-            .setDescription(`A <@&${SUPPORT_ROLE_ID}> will assist you shortly. Click ❌ to close.`);
-
-        const closeButton = new ButtonBuilder()
-            .setCustomId('close_ticket')
-            .setLabel('Close')
-            .setStyle(ButtonStyle.Secondary)
-            .setEmoji('❌');
-
-        const row = new ActionRowBuilder().addComponents(closeButton);
-        await ticketChannel.send({ content: `<@${user.id}>`, embeds: [embed], components: [row] });
-
-        await interaction.reply({ content: `✅ Your ticket has been created: ${ticketChannel}`, ephemeral: true });
-    }
-
-    // 🔒 Handle Ticket Closing
-    if (interaction.customId === 'close_ticket') {
-        const ticketChannel = interaction.channel;
-        await interaction.reply({ content: '✅ Closing ticket in 5 seconds...', ephemeral: true });
-        setTimeout(() => ticketChannel.delete(), 5000);
-    }
-});
-
 console.log("Loaded token:", process.env.DISCORD_TOKEN ? "✅ Token detected" : "❌ No token found");
 
 client.login(TOKEN);
-
 
 
 
