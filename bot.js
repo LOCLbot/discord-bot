@@ -52,9 +52,7 @@ client.on('messageCreate', async (message) => {
             .setColor(0xff0000) // 🔴 Change the embed color to RED (you can choose any hex color)
             .setTitle('🎯 **RULES & REGULATIONS** 🚨') // Title in bold with emojis
             .setDescription(
-                '**📜 Welcome to the LOCL Tournament!**\n\n' +
-                'React below to start the join Discord process!\n\n' +
-                '**✅ If you accept the Rules, Click the ✅ below!**\n⬇️'
+                '**⚔️ Welcome to the LOCL Tournament! ⚔️**\n\n'
             )
             .addFields(
                 { name: '📌 **1. General Rules**', value: 
