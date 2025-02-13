@@ -45,15 +45,98 @@ client.once('ready', () => {
     console.log(`✅ Bot is online as ${client.user.tag}`);
 });
 
-// ✅ Send Rules Embed
+// ✅ Send Rules Embed with Tournament Rules
 client.on('messageCreate', async (message) => {
-    if (message.content === '!sendrules' && message.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
+    if (message.content === '!sendrules' && message.member.permissions.has('Administrator')) {
         const embed = new EmbedBuilder()
-            .setColor(0x2ecc71) // Green
-            .setTitle('🎯 **RULES & REGULATIONS** 🚨')
-            .setDescription('**Welcome to the LOCL Tournament!**\n\n**Click ✅ below to accept the rules!**⬇️');
+            .setColor(0xff0000) // 🔴 Change the embed color to RED (you can choose any hex color)
+            .setTitle('🎯 **RULES & REGULATIONS** 🚨') // Title in bold with emojis
+            .setDescription(
+                '**📜 Welcome to the LOCL Tournament!**\n\n' +
+                'React below to start the join Discord process!\n\n' +
+                '**✅ If you accept the Rules, Click the ✅ below!**\n⬇️'
+            )
+            .addFields(
+                { name: '📌 **1. General Rules**', value: 
+                    `- **Respect all players** – No toxicity, harassment, or discrimination.\n` +
+                    `- **Follow Discord & Game ToS** – No cheating, hacking, or exploiting.\n` +
+                    `- **Admins & Moderators have final say** – Their decisions are final.\n` +
+                    `- **No match-fixing or collusion** – Bribing, throwing, or win-trading will lead to disqualification.\n` +
+                    `- **Check-in Required** – Players must check in **15 minutes before match time** or forfeit.\n` +
+                    `- **Glitches/Exploits:** – Any use of banned glitches = automatic disqualification.`
+                },
+                { name: '📅 **2. Tournament Format**', value: 
+                    `- **Game Mode** – Search & Destroy, Hardpoint, or Control.\n` +
+                    `- **Map Type** – Randomized.\n` +
+                    `- **Seeding** – Based on previous tournament performance.\n` +
+                    `- **Play Times** – When players are available.\n` +
+                    `- **Finals Format** – Best of 5.`
+                },
+                { name: '🎮 **3. Player & Team Requirements**', value:
+                    `- **Minimum Age** – 13+ (or per game’s competitive rules).\n` +
+                    `- **Team Size** – 4v4.\n` +
+                    `- **Substitutions:**\n` +
+                    `  - Each team is allowed **one registered substitute**.\n` +
+                    `  - Subs must be Warrior or Elite ranked.\n` +
+                    `  - Subs must be confirmed before the tournament begins.\n` +
+                    `  - No mid-series roster changes unless an emergency occurs.\n`+
+                    `  - Your team must consist of:\n` +
+                    `    - One **Warrior** 🛡️\n` +
+                    `    - One **Elite** ⚔️\n` +
+                    `    - One **Champion** 🏆\n` +
+                    `    - One **Legend** 👑\n` +
+                    `- **Roster Lock** – No roster changes after check-in.`
+                },
+                { name: '⏳ **4. Match Rules**', value:
+                    `- **Time to play** – Players must be ready **10 minutes before the match starts**.\n` +
+                    `  - Teams that fail to start within 10 minutes will forfeit Game 1.\n` +
+                    `  - A full team must be present for Game 2, or the series is forfeited.\n\n` +
+                    `- **Disconnects & Technical Issues**\n` +
+                    `  - If a player **disconnects within the first 30 seconds**, the round will be restarted.\n` +
+                    `  - **Each team gets 1 restart per match.**\n` +
+                    `  - If a player disconnects mid-game, the match continues unless the server crashes.\n` +
+                    `  - If a player **cannot reconnect within 5 minutes**, the team must continue shorthanded or forfeit.\n\n` +
+                    `- **Tiebreakers**\n` +
+                    `  - If a match ends in a tie, a **sudden-death overtime round** will be played.`
+                },
+                { name: '⚖️ **5. CL Rules & Banned Items**', value:
+                    `- **Weapon Restrictions** – Follow CL rules for banned weapons/perks/attachments.\n` +
+                    `- **Killstreaks** – Follow CL rules for killstreaks.\n`
+                },
+                { name: '🚨 **6. Code of Conduct & Fair Play**', value:
+                    `- **No Cheating** – Any use of third-party software (aimbot, wallhacks, macros) = **permanent tournament ban.**\n` +
+                    `- **No Unsportsmanlike Conduct** – Trash talk is allowed, but excessive BM (bad manners), racism, threats, or harassment = **instant disqualification.**\n` +
+                    `- **No Multi-Accounting** – Players must use their **main account**; smurfing = **team disqualification.**\n` +
+                    `- **Streaming Requirements:**\n` +
+                    `  - Players may be required to **monitor cam** if called out for cheating.\n` +
+                    `  - **Tournament staff may spectate and record matches.**`
+                },
+                { name: '📢 **7. Reporting & Communication**', value:
+                    `- **LOCL Discord** – All players must be in the LOCL Discord server.\n` +
+                    `- **Match results** – All match results must be reported within **10 minutes** after the match ends.\n` +
+                    `- **Disputes & Violations** – Should be reported immediately with proof (screenshots/videos).`
+                },
+                { name: '🏅 **8. Prizing & Rewards**', value:
+                    `- **Prize Distribution** – Winners will receive **cash prizes, tournament points, or special Discord roles.**\n` +
+                    `- **Payout Timeframe** – Prizes will be distributed **within 30 days** of the tournament’s conclusion.\n` +
+                    `- **Payment** – Winners must provide **valid payment information** (e.g., PayPal, Venmo, etc.).`
+                },
+                { name: '🚫 **9. Rule Enforcement & Penalties**', value:
+                    `- **First Violation** – Warning.\n` +
+                    `- **Second Violation** – Match Forfeit.\n` +
+                    `- **Severe Offenses** – (Cheating, Harassment, Match Fixing) **Permanent Ban from all LOCL tournaments.**\n`
+                },
+                { name: '🚀 **10. Summary**', value:
+                    `- ✅ **Randomized maps & fair seeding**\n` +
+                    `- ✅ **Structured team compositions**\n` +
+                    `- ✅ **Strict rules for cheating & conduct**\n` +
+                    `- ✅ **Clear penalties & prize distribution**`
+                }
+            );
 
         const msg = await message.channel.send({ embeds: [embed] });
+
+        // React with the checkmark emoji automatically
         await msg.react(CHECKMARK_EMOJI);
     }
 
@@ -78,21 +161,22 @@ client.on('messageCreate', async (message) => {
     if (message.content === '!sendwelcome' && message.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
         const embed = new EmbedBuilder()
             .setColor(0x2ecc71) // Green
-            .setTitle("**Welcome to LOCL – Legends of COD League!**")
+            .setTitle("🎮 **Welcome to LOCL – Legends of COD League!**")
             .setDescription(
-                "Compete. Dominate. Rise to the Top!\n" +
+                "**Compete. Dominate. Rise to the Top!**\n" +
                 "You've just joined one of the most intense Call of Duty competitive communities!\n\n" +
-                
-                "### **Next Steps for New Members**\n" +
+
+                "## 📌 **Next Steps for New Members**\n" +
                 "✅ **Step 1:** Read the **📜 [Rules](<#" + RULES_CHANNEL_ID + ">)** to understand our guidelines.\n" +
                 "✅ **Step 2:** Select Get Ranked in **🎖 [Get-Rank](<#" + GET_RANK_CHANNEL_ID + ">)** and wait for a ranker to respond.\n" +
                 "✅ **Step 3:** Introduce yourself in **👋 [Introductions](<#" + INTRODUCTIONS_CHANNEL_ID + ">)**.\n" +
                 "✅ **Step 4:** Check out upcoming games in **📆 [Tournament Info](<#" + TOURNAMENT_INFO_CHANNEL_ID + ">)**.\n" +
                 "✅ **Step 5:** Join the fight! Connect with players in **🎯 [Looking for a Team](<#" + LOOKING_FOR_TEAM_CHANNEL_ID + ">)**.\n\n" +
 
-                "### **📞 Contact Staff**\n" +
-                "*If you need help, message a* <@&" + ADMIN_ROLE_ID + ">.\n\n" + // Admin Role Mention
-                "**Welcome to LOCL – Legends of COD League!** | *Good Luck & Have Fun!*"
+                "## 📞 **Contact Staff**\n" +
+                "*If you need help, message a* <@&" + ADMIN_ROLE_ID + ">.\n\n" +
+                
+                "🎮 **Welcome to LOCL – Legends of COD League!** | *Good Luck & Have Fun!* 🎉"
             )
             .setFooter({ text: "Welcome to the community!", iconURL: message.guild.iconURL() });
 
