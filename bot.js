@@ -151,11 +151,11 @@ client.on('messageCreate', async (message) => {
                     "You've just joined one of the most intense Call of Duty competitive communities!\n" +
                     "Get ready to team up, compete, and prove your skills.\n\n" +
                     
-                    "✅ **Step 1:** Read the <#RULES_CHANNEL_ID> to understand our guidelines.\n" +
-                    "✅ **Step 2:** Select Get Ranked in <#GET_RANK_CHANNEL_ID> and wait for a ranker to respond.\n" +
-                    "✅ **Step 3:** Introduce yourself in <#INTRODUCTIONS_CHANNEL_ID>.\n" +
-                    "✅ **Step 4:** Check out upcoming games in <#TOURNAMENT_INFO_CHANNEL_ID>.\n" +
-                    "✅ **Step 5:** Join the fight! Connect with players in <#LOOKING_FOR_TEAM_CHANNEL_ID>."
+                    "✅ **Step 1:** Read the (<#" + RULES_CHANNEL_ID + ">) to understand our guidelines.\n" +
+                    "✅ **Step 2:** Select Get Ranked in (<#" + GET_RANK_CHANNEL_ID + ">) and wait for a ranker to respond.\n" +
+                    "✅ **Step 3:** Introduce yourself in (<#" + INTRODUCTIONS_CHANNEL_ID + ">).\n" +
+                    "✅ **Step 4:** Check out upcoming games in (<#" + TOURNAMENT_INFO_CHANNEL_ID + ">).\n" +
+                    "✅ **Step 5:** Join the fight! Connect with players in (<#" + LOOKING_FOR_TEAM_CHANNEL_ID + ">)."
                 )
                 .setFooter({ text: "Welcome to the community!", iconURL: message.guild.iconURL() });
     
