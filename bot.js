@@ -210,7 +210,7 @@ client.on('interactionCreate', async (interaction) => {
         const { guild, user } = interaction;
         const safeName = user.displayName.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
 
-        const existingChannel = guild.channels.cache.find((channel) => channel.name === `ticket-${safeName}`);
+        const existingChannel = guild.channels.cache.find((channel) => channel.name === `${safeName}`);
         if (existingChannel) {
             return interaction.reply({ content: '❌ You already have an open ticket!', ephemeral: true });
         }
