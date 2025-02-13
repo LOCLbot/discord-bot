@@ -208,7 +208,7 @@ client.on('interactionCreate', async (interaction) => {
 
     if (interaction.customId === 'create_ticket') {
         const { guild, user } = interaction;
-        const safeName = user.username.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
+        const safeName = user.displayName.replace(/[^a-zA-Z0-9]/g, '');
 
         const existingChannel = guild.channels.cache.find((channel) => channel.name === `ticket-${safeName}`);
         if (existingChannel) {
@@ -241,6 +241,13 @@ client.on('interactionCreate', async (interaction) => {
         await ticketChannel.send({ content: `<@${user.id}>`, embeds: [embed], components: [row] });
 
         await interaction.reply({ content: `✅ Your ticket has been created: ${ticketChannel}`, ephemeral: true });
+    }
+
+    // 🔒 Handle Ticket Closing
+    if (interaction.customId === 'close_ticket') {
+        const ticketChannel = interaction.channel;
+        await interaction.reply({ content: '✅ This ticket will be deleted in 5 seconds...', ephemeral: true });
+        setTimeout(() => ticketChannel.delete(), 5000);
     }
 });
 
