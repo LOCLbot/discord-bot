@@ -164,7 +164,7 @@ client.on('messageCreate', async (message) => {
                     "📞 **Contact Staff**\n" +
                     "*If you need help, message a* <@&" + ADMIN_ROLE_ID + ">.\n\n" // Mention the Admin role
                 )
-                .setFooter({ text: "Welcome to the community!", iconURL: message.guild.iconURL() });
+                .setFooter({ text: "Welcome to LOCL - Legends of COD League | Good Luck & Have Fun!", iconURL: message.guild.iconURL() });
     
             await message.channel.send({ embeds: [embed] });
         }
