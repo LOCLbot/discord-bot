@@ -169,6 +169,25 @@ client.on('messageCreate', async (message) => {
     }
 });
 
+// ✅ Send Ticket Embed
+client.on('messageCreate', async (message) => {
+    if (message.content === '!sendticket' && message.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
+        const embed = new EmbedBuilder()
+            .setColor(0xed4245)
+            .setTitle('Need to get ranked?')
+            .setDescription(`Click the button below to schedule a time with a <@&${SUPPORT_ROLE_ID}>.`);
+
+        const button = new ButtonBuilder()
+            .setCustomId('create_ticket')
+            .setLabel('Get Ranked')
+            .setStyle(ButtonStyle.Danger)
+            .setEmoji('🗒️');
+
+        const row = new ActionRowBuilder().addComponents(button);
+        await message.channel.send({ embeds: [embed], components: [row] });
+    }
+});
+
 // ✅ Assign Role on Reaction
 client.on('messageReactionAdd', async (reaction, user) => {
     if (reaction.message.channel.id !== RULES_CHANNEL_ID) return;
