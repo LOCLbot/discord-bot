@@ -142,33 +142,27 @@ client.on('messageCreate', async (message) => {
 });
 
     // ✅ Send Welcome Steps Embed
-client.on('messageCreate', async (message) => {
-    if (message.content === '!sendwelcome' && message.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
-        const embed = new EmbedBuilder()
-            .setColor(0x2ecc71) // Green
-            .setTitle("🎮 **Welcome to LOCL – Legends of COD League!**")
-            .setDescription(
-                "**Compete. Dominate. Rise to the Top!**\n" +
-                "You've just joined one of the most intense Call of Duty competitive communities!\n\n" +
-
-                "## 📌 **Next Steps for New Members**\n" +
-                "✅ **Step 1:** Read the **📜 [Rules](<#" + RULES_CHANNEL_ID + ">)** to understand our guidelines.\n" +
-                "✅ **Step 2:** Select Get Ranked in **🎖 [Get-Rank](<#" + GET_RANK_CHANNEL_ID + ">)** and wait for a ranker to respond.\n" +
-                "✅ **Step 3:** Introduce yourself in **👋 [Introductions](<#" + INTRODUCTIONS_CHANNEL_ID + ">)**.\n" +
-                "✅ **Step 4:** Check out upcoming games in **📆 [Tournament Info](<#" + TOURNAMENT_INFO_CHANNEL_ID + ">)**.\n" +
-                "✅ **Step 5:** Join the fight! Connect with players in **🎯 [Looking for a Team](<#" + LOOKING_FOR_TEAM_CHANNEL_ID + ">)**.\n\n" +
-
-                "## 📞 **Contact Staff**\n" +
-                "*If you need help, message a* <@&" + ADMIN_ROLE_ID + ">.\n\n" +
-                
-                "🎮 **Welcome to LOCL – Legends of COD League!** | *Good Luck & Have Fun!* 🎉"
-            )
-            .setFooter({ text: "Welcome to the community!", iconURL: message.guild.iconURL() });
-
-        await message.channel.send({ embeds: [embed] });
-    }
-});
-
+    client.on('messageCreate', async (message) => {
+        if (message.content === '!sendwelcome' && message.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
+            const embed = new EmbedBuilder()
+                .setColor(0x2ecc71) // Green
+                .setTitle("✅ **Next Steps for New Members**")
+                .setDescription(
+                    "You've just joined one of the most intense Call of Duty competitive communities!\n" +
+                    "Get ready to team up, compete, and prove your skills.\n\n" +
+                    
+                    "✅ **Step 1:** Read the <#RULES_CHANNEL_ID> to understand our guidelines.\n" +
+                    "✅ **Step 2:** Select Get Ranked in <#GET_RANK_CHANNEL_ID> and wait for a ranker to respond.\n" +
+                    "✅ **Step 3:** Introduce yourself in <#INTRODUCTIONS_CHANNEL_ID>.\n" +
+                    "✅ **Step 4:** Check out upcoming games in <#TOURNAMENT_INFO_CHANNEL_ID>.\n" +
+                    "✅ **Step 5:** Join the fight! Connect with players in <#LOOKING_FOR_TEAM_CHANNEL_ID>."
+                )
+                .setFooter({ text: "Welcome to the community!", iconURL: message.guild.iconURL() });
+    
+            await message.channel.send({ embeds: [embed] });
+        }
+    });
+    
 // ✅ Send Ticket Embed
 client.on('messageCreate', async (message) => {
     if (message.content === '!sendticket' && message.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
