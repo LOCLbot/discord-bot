@@ -146,16 +146,23 @@ client.on('messageCreate', async (message) => {
         if (message.content === '!sendwelcome' && message.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
             const embed = new EmbedBuilder()
                 .setColor(0x2ecc71) // Green
-                .setTitle("✅ **Next Steps for New Members**")
+                .setTitle("**Welcome to LOCL – Legends of COD League!**")
                 .setDescription(
+                    "**Compete. Dominate. Rise to the Top!**\n\n" +
+
                     "You've just joined one of the most intense Call of Duty competitive communities!\n" +
                     "Get ready to team up, compete, and prove your skills.\n\n" +
+
+                    "**Next Steps for New Members**\n\n" +
                     
                     "✅ **Step 1:** Read the (<#" + RULES_CHANNEL_ID + ">) to understand our guidelines.\n" +
                     "✅ **Step 2:** Select Get Ranked in (<#" + GET_RANK_CHANNEL_ID + ">) and wait for a ranker to respond.\n" +
                     "✅ **Step 3:** Introduce yourself in (<#" + INTRODUCTIONS_CHANNEL_ID + ">).\n" +
                     "✅ **Step 4:** Check out upcoming games in (<#" + TOURNAMENT_INFO_CHANNEL_ID + ">).\n" +
-                    "✅ **Step 5:** Join the fight! Connect with players in (<#" + LOOKING_FOR_TEAM_CHANNEL_ID + ">)."
+                    "✅ **Step 5:** Join the fight! Connect with players in (<#" + LOOKING_FOR_TEAM_CHANNEL_ID + ">).\n\n" +
+
+                    "📞 **Contact Staff**\n" +
+                    "*If you need help, message a* <@&" + ADMIN_ROLE_ID + ">.\n\n" // Mention the Admin role
                 )
                 .setFooter({ text: "Welcome to the community!", iconURL: message.guild.iconURL() });
     
