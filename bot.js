@@ -171,8 +171,8 @@ client.on('messageCreate', async (message) => {
                 "✅ **Step 2:** Select Get Ranked in <#" + GET_RANK_CHANNEL_ID + "> and wait for a ranker to respond.\n" +
                 "✅ **Step 3:** Introduce yourself in <#" + INTRODUCTIONS_CHANNEL_ID + ">.\n" +
                 "✅ **Step 4:** Check out upcoming games in <#" + TOURNAMENT_INFO_CHANNEL_ID + ">.\n" +
-                "✅ **Step 5:** Join the fight! Connect with players in <#" + LOOKING_FOR_TEAM_CHANNEL_ID + "\n" +
-                
+                "✅ **Step 5:** Join the fight! Connect with players in <#" + LOOKING_FOR_TEAM_CHANNEL_ID + ">.\n" +
+
                 "## 📞 **Contact Staff**\n" +
                 "*If you need help, message a* <@&" + ADMIN_ROLE_ID + ">.\n\n" +
                 
