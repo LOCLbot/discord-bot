@@ -31,9 +31,12 @@ const client = new Client({
 
 // IDs (Replace these with actual values)
 const RULES_CHANNEL_ID = '1336949785885937685'; // Rules channel
+const GET_RANK_CHANNEL_ID = 'YOUR_GET_RANK_CHANNEL_ID';
+const INTRODUCTIONS_CHANNEL_ID = 'YOUR_INTRODUCTIONS_CHANNEL_ID';
+const TOURNAMENT_INFO_CHANNEL_ID = 'YOUR_TOURNAMENT_INFO_CHANNEL_ID';
+const LOOKING_FOR_TEAM_CHANNEL_ID = 'YOUR_LOOKING_FOR_TEAM_CHANNEL_ID';
 const ROLE_ID = '1337646502012780616'; // Role assigned on ✅ reaction
 const CHECKMARK_EMOJI = '✅'; // Reaction emoji
-const TICKET_CHANNEL_ID = '1336961344682856508'; // Ticket request channel
 const TICKET_CATEGORY_ID = '1337654371076411473'; // Category for tickets
 const SUPPORT_ROLE_ID = '1337654453477576754'; // Support role
 
@@ -68,6 +71,26 @@ client.on('messageCreate', async (message) => {
 
         const row = new ActionRowBuilder().addComponents(button);
         await message.channel.send({ embeds: [embed], components: [row] });
+    }
+
+    // ✅ Send Welcome Steps Embed
+    if (message.content === '!sendwelcome' && message.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
+        const embed = new EmbedBuilder()
+            .setColor(0x2ecc71) // Green
+            .setTitle("✅ **Next Steps for New Members**")
+            .setDescription(
+                "You've just joined one of the most intense Call of Duty competitive communities!\n" +
+                "Get ready to team up, compete, and prove your skills.\n\n" +
+                
+                "✅ **Step 1:** Read the <#" + RULES_CHANNEL_ID + "> to understand our guidelines.\n" +
+                "✅ **Step 2:** Select Get Ranked in <#" + GET_RANK_CHANNEL_ID + "> and wait for a ranker to respond.\n" +
+                "✅ **Step 3:** Introduce yourself in <#" + INTRODUCTIONS_CHANNEL_ID + ">.\n" +
+                "✅ **Step 4:** Check out upcoming games in <#" + TOURNAMENT_INFO_CHANNEL_ID + ">.\n" +
+                "✅ **Step 5:** Join the fight! Connect with players in <#" + LOOKING_FOR_TEAM_CHANNEL_ID + ">."
+            )
+            .setFooter({ text: "Welcome to the community!", iconURL: message.guild.iconURL() });
+
+        await message.channel.send({ embeds: [embed] });
     }
 });
 
@@ -145,6 +168,7 @@ client.on('interactionCreate', async (interaction) => {
 console.log("Loaded token:", process.env.DISCORD_TOKEN ? "✅ Token detected" : "❌ No token found");
 
 client.login(TOKEN);
+
 
 
 
