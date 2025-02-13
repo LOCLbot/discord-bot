@@ -208,7 +208,7 @@ client.on('interactionCreate', async (interaction) => {
 
     if (interaction.customId === 'create_ticket') {
         const { guild, user } = interaction;
-        const safeName = user.displayName.replace(/[^a-zA-Z0-9]/g, '');
+        const safeName = user.displayName.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
 
         const existingChannel = guild.channels.cache.find((channel) => channel.name === `ticket-${safeName}`);
         if (existingChannel) {
