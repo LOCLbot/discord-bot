@@ -216,7 +216,7 @@ client.on('interactionCreate', async (interaction) => {
         }
 
         const ticketChannel = await guild.channels.create({
-            name: `ticket-${safeName}`,
+            name: `${safeName}`,
             type: 0, // Text channel
             parent: TICKET_CATEGORY_ID,
             permissionOverwrites: [
@@ -228,7 +228,7 @@ client.on('interactionCreate', async (interaction) => {
 
         const embed = new EmbedBuilder()
             .setColor(0xed4245)
-            .setTitle(`🗒️ ${user.username}'s Ticket`)
+            .setTitle(`🗒️ Need to get Ranked?`)
             .setDescription(`A <@&${SUPPORT_ROLE_ID}> will assist you shortly. Click ❌ to close.`);
 
         const closeButton = new ButtonBuilder()
