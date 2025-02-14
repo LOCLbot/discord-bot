@@ -252,18 +252,18 @@ client.on('interactionCreate', async (interaction) => {
             .setColor(0xed4245)
             .setTitle(`🗒️ Need to get Ranked?`)
             .setDescription(
-                `**Answer all 5 questions to get ranked.**\n\n` +
+                `**Answer all 5 questions to start the ranking process.**\n\n` +
 
 
-                `1️⃣ *What is your current or highest CoD Ranked Play rank?* (e.g., Gold, Platinum, Iridescent, Top 250, or Unranked)\n\n` +
+                `1️⃣ **What is your current or highest CoD Ranked Play rank?** (e.g., Gold, Platinum, Iridescent, Top 250, or Unranked)\n\n` +
 
-                `2️⃣ *What role do you play best in a competitive team?* (Slayer, Objective, Support, or Sniper?)\n\n` +
+                `2️⃣ **What role do you play best in a competitive team?** (Slayer, Objective, Support, or Sniper?)\n\n` +
                 
-                `3️⃣ *How would you rate your map knowledge and game sense on a scale of 1-10?* (Do you know rotations, spawns, and common strategies?)\n\n` +
+                `3️⃣ **How would you rate your map knowledge and game sense on a scale of 1-10?** (Do you know rotations, spawns, and common strategies?)\n\n` +
                 
-                `4️⃣ *How well do you communicate with teammates?* (Scale 1-10, and do you use proper callouts?)\n\n` +
+                `4️⃣ **How well do you communicate with teammates?** (Scale 1-10, and do you use proper callouts?)\n\n` +
                 
-                `5️⃣ *Are you comfortable playing a 1v1 against a* <@&${SUPPORT_ROLE_ID}>? (Yes/No, and why?)\n\n` +
+                `5️⃣ **Are you comfortable playing a 1v1 against a <@&${SUPPORT_ROLE_ID}>?** (Yes/No)\n\n` +
                 
                 `**Copy & Paste all 5 questions below and A <@&${SUPPORT_ROLE_ID}> will assist you shortly. Click ❌ to close.**`
             
