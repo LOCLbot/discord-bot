@@ -175,7 +175,7 @@ client.on('messageCreate', async (message) => {
             .setColor(0xed4245)
             .setTitle('Need to get ranked?')
             .setDescription(
-                `**Ranks**\n\n` +
+                `**Ranks**\n` +
                 `1. **Warrior** 🛡️\n` +
                 `– Entry-level rank for beginners and casual players.\n\n` +
 
@@ -230,7 +230,7 @@ client.on('interactionCreate', async (interaction) => {
 
     if (interaction.customId === 'create_ticket') {
         const { guild, user } = interaction;
-        const safeName = user.displayName.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+        const safeName = user.displayName.replace(/[^a-zA-Z0-9]/g,'').toLowerCase();
 
         const existingChannel = guild.channels.cache.find((channel) => channel.name === `${safeName}`);
         if (existingChannel) {
@@ -251,7 +251,23 @@ client.on('interactionCreate', async (interaction) => {
         const embed = new EmbedBuilder()
             .setColor(0xed4245)
             .setTitle(`🗒️ Need to get Ranked?`)
-            .setDescription(`A <@&${SUPPORT_ROLE_ID}> will assist you shortly. Click ❌ to close.`);
+            .setDescription(
+                `**Answer all 5 questions to get ranked.**\n\n` +
+
+
+                `1️⃣ What is your current or highest CoD Ranked Play rank? (e.g., Gold, Platinum, Iridescent, Top 250, or Unranked)\n` +
+
+                `2️⃣ What role do you play best in a competitive team? (Slayer, Objective, Support, or Sniper?)\n` +
+                
+                `3️⃣ How would you rate your map knowledge and game sense on a scale of 1-10? (Do you know rotations, spawns, and common strategies?)\n` +
+                
+                `4️⃣ How well do you communicate with teammates? (Scale 1-10, and do you use proper callouts?)\n` +
+                
+                `5️⃣ Are you comfortable playing a 1v1 against a <@&${SUPPORT_ROLE_ID}>? (Yes/No, and why?)\n` +
+                
+                `Copy & Paste all 5 questions below and A <@&${SUPPORT_ROLE_ID}> will assist you shortly. Click ❌ to close.`
+            
+            );
 
         const closeButton = new ButtonBuilder()
             .setCustomId('close_ticket')
