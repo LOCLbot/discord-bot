@@ -174,7 +174,24 @@ client.on('messageCreate', async (message) => {
         const embed = new EmbedBuilder()
             .setColor(0xed4245)
             .setTitle('Need to get ranked?')
-            .setDescription(`Click the button below to schedule a time with a <@&${SUPPORT_ROLE_ID}>.`);
+            .setDescription(
+                `**Ranks**\n\n` +
+                `1. **Warrior** 🛡️\n` +
+                `– Entry-level rank for beginners and casual players.\n\n` +
+
+                `2. **Elite** ⚔️\n` +
+                `– Intermediate players with solid skills and game sense.\n\n` +
+
+                `3. **Champion** 🏆\n` +
+                `– Top-tier competitors, highly skilled in mechanics and strategy.\n\n` +
+
+                `4. **Legend** 👑\n` +
+                `– The absolute best, representing mastery and dominance.\n\n` +
+
+                `**Click the button below to schedule a time with a <@&${SUPPORT_ROLE_ID}>.**\n`
+            
+            
+            );
 
         const button = new ButtonBuilder()
             .setCustomId('create_ticket')
